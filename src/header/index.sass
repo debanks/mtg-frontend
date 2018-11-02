@@ -1,0 +1,151 @@
+@import '../_variables.sass'
+
+.HeaderComponent
+  .container
+    max-width: none
+  .navbar-collapse.in
+    background: $header
+  .navbar
+    z-index: 12
+    background: $header
+    color: #f7f7f7
+    width: 100%
+    position: fixed
+    left: 0
+    top: 0
+    height: 45px
+    min-height: 45px
+    border-radius: 0
+    border: 0
+    border-bottom: 1px solid $accent
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.4)
+    .close-nav
+      margin-left: 30px
+      @media only screen and (max-width: 768px)
+        margin-left: 0
+    .navbar-right
+      .btn
+        margin: 5px 5px 0 0
+        background: rgba(255,255,255,0.05)
+        border: 1px solid #1b6d85
+        color: #fff
+        &:hover, &:active, &:focus
+          background: rgba(255,255,255,0.1)
+          color: #fff
+        &.btn-success
+          background: #1b6d85
+          border: 1px solid #2b7d95
+          &:hover, &:active, &:focus
+            background: #3b8da5
+            color: #fff
+        @media screen and (max-width: 767px)
+          width: 90%
+          margin-left: 5%
+    .navbar-nav > li
+      a
+        cursor: pointer
+        font-size: 16px
+        box-sizing: border-box
+        color: #f7f7f7
+        padding: 0 15px 0 15px
+        line-height: 45px
+        margin-left: -1px
+        background: transparent
+        &:focus
+          color: #f7f7f7
+          background: $header
+        &:hover, &:active, &.active
+          background: $darkAccent
+          color: #ffffff
+      &.active > a, &.active > a:hover, &.active > a:focus
+        background: rgba(255,255,255,0.2)
+        color: #ffffff
+    .dropdown-menu
+      background: $darkAccent
+      li
+        a
+          line-height: 32px
+          color: #f2f2f2
+          &:hover
+            background: rgba(255,255,255,0.1)
+            color: #ffffff
+    .no-divider
+      li > a
+        border-left: 0
+        border-right: 0
+      .btn
+        margin-top: 4px
+        margin-right: 10px
+        padding: 5px 10px
+        color: #f2f2f2
+        @media screen and (max-width: 400px)
+          width: 90%
+          margin-left: 5%
+    .navbar-brand
+      cursor: pointer
+      font-size: 28px
+      margin-left: 10px !important
+      line-height: 40px
+      margin-top: 3px
+      height: 38px
+      color: #f2f2f2
+      padding: 0
+      a
+        color: #f2f2f2
+        &:hover
+          color: #f2f2f2
+      img
+        height: 40px
+        width: 40px
+        display: inline-block
+        vertical-align: top
+        margin-top: 0px
+      &:hover
+        color: #ffffff
+      &:active
+        color: #ffffff
+    .navbar-toggle
+      margin-top: 2px
+      margin-bottom: 2px
+      color: #f2f2f2
+  .header-bar
+    .inner
+      background: $header
+      border-bottom: 1px solid #e3e5e7
+      position: fixed
+      top: 0
+      width: 100%
+      left: 0
+      text-align: center
+      height: 50px
+      overflow: visible
+      z-index: 10
+      a
+        display: inline-block
+        width: 130px
+        vertical-align: top
+        line-height: 50px
+        padding: 0 30px
+        font-size: 18px
+        color: #f2f4f6
+        &:hover
+          box-shadow: inset 0 -10px 15px -10px #ff6d00
+        &.active
+          color: #ff6d00
+      .placeholder
+        position: relative
+        display: inline-block
+        width: 150px
+        height: 100%
+    .nav-logo
+      position: fixed
+      width: 150px
+      overflow: visible
+      height: 90px
+      z-index: 11
+      top: 0
+      left: 50%
+      margin-left: -75px
+      text-align: center
+      img
+        width: 50px

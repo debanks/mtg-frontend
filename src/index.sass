@@ -1,0 +1,213 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins|Nunito+Sans)
+@import '_mixins.scss'
+@import '_variables.sass'
+
+html,body,#root
+  min-height: 100%
+  height: 100%
+
+body
+  margin: 0
+  padding: 0
+  font-family: 'Poppins', sans-serif
+  background: $background
+
+.align-left
+  text-align: left
+.align-right
+  text-align: right
+.align-center
+  text-align: center
+
+.capitalize
+  text-transform: capitalize
+
+.spin
+  -webkit-animation: spin 4s linear infinite
+  -moz-animation: spin 4s linear infinite
+  animation: spin 4s linear infinite
+
+.wiggle
+  -webkit-animation: wiggle 2s linear infinite
+  -moz-animation: wiggle 2s linear infinite
+  animation: wiggle 2s linear infinite
+
+.container
+  width: 100%
+
+a:hover
+  text-decoration: none !important
+
+#root > div
+  position: relative
+  min-height: 100%
+  padding-bottom: 220px
+
+
+.numbers
+  font-family: 'Nunito Sans'
+
+.modal
+  .dropdown-menu
+    max-height: 300px
+    overflow: auto
+.form-control, .btn
+  border-radius: 0
+  box-shadow: none
+.margin-right-10
+  margin-right: 10px
+
+.main-content
+  padding: 0 5%
+a
+  color: inherit
+
+.modal,.tooltip
+  z-index: 30001
+
+.no-negative-margin
+  margin-left: 0
+  margin-right: 0
+
+.clickable
+  cursor: pointer
+
+.strobe-red
+  -webkit-animation: strobe-red 4s linear infinite
+  -moz-animation: strobe-red 4s linear infinite
+  animation: strobe-red 4s linear infinite
+
+.gradient-text
+  background: -webkit-linear-gradient(#ffffff, #aaa)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+  background-clip: text
+
+form
+  display: inline-block
+  min-width: 200px
+  width: 40%
+  .form-group
+    display: inline-block
+    margin: 0
+  input
+    padding: 7px 20px
+    font-size: 18px
+    background: rgba(0,0,0,0.6)
+    border: 1px solid #1b6d85
+    color: #e2e2e2
+  .input-group-addon
+    padding: 0
+    background: transparent
+    border: 1px solid #1b6d85
+    .btn
+      margin: 0 !important
+      background: rgba(255,255,255,0.1)
+      padding: 6px 12px
+      border: 0
+      color: #f2f2f2
+
+.box-container
+  position: relative
+  margin-right: 10px
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+  background: #171819
+  color: #f2f2f2
+  border: 1px solid rgba(0,0,0,0.3)
+  margin-bottom: 5px
+  .sticky-header
+    width: 100%
+    position: -webkit-sticky
+    position: sticky
+    z-index: 2
+    top: 50px
+    padding: 10px 20px
+    color: #ffffff
+    background: #03080c
+    border-bottom: 2px solid rgba(0,0,0,0.3)
+    span
+      font-size: 20px
+  .box-header
+    overflow: hidden
+    margin: 0
+    background: #101111
+    border-bottom: 1px solid rgba(0,0,0,0.5)
+    img
+      height: 39px
+      margin: 0px 5px 0 0
+    .box-header-colored
+      padding: 7px 50px 7px 50px
+      font-size: 18px
+      font-weight: 700
+      display: inline-block
+      margin-left: -30px
+      transform: skewX(-45deg)
+      background: #be3600
+      .box-header-content
+        transform: skewX(45deg)
+        letter-spacing: 1px
+  &.hoverable
+    &:hover
+      box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.24)
+  img
+    max-width: 100%
+  .box-stats
+    padding: 0 15px
+    .row
+      padding: 5px 0
+      &:nth-child(even)
+        background: rgba(255,255,255,0.02)
+      &.hover
+        background: rgba(255,255,255,0.1)
+      .place
+        color: #728ba0
+        &.p1st
+          color: #FDD017
+        &.p2nd
+          color: #B6AFA9
+        &.p3rd
+          color: #B87333
+
+.green
+  color: $green
+.red
+  color: $bootstrap-red
+
+@-moz-keyframes spin
+  100%
+    -moz-transform: rotate(360deg)
+@-webkit-keyframes spin
+  100%
+    -webkit-transform: rotate(360deg)
+@keyframes spin
+  100%
+    -webkit-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@-moz-keyframes wiggle
+  0%, 8%, 16%, 24%, 100%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  4%, 12%, 20%
+    -webkit-transform: rotate(-45deg)
+    transform: rotate(-45deg)
+@-webkit-keyframes wiggle
+  0%, 8%, 16%, 24%, 100%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  4%, 12%, 20%
+    -webkit-transform: rotate(-45deg)
+    transform: rotate(-45deg)
+@keyframes wiggle
+  0%, 8%, 16%, 24%, 100%
+    -webkit-transform: rotate(0deg)
+    transform: rotate(0deg)
+  4%, 12%, 20%
+    -webkit-transform: rotate(-45deg)
+    transform: rotate(-45deg)
+
+@keyframes strobe-red
+  50%
+    background: lighten($bootstrap-red, 10%)
+  100%
+    background: $bootstrap-red
