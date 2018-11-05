@@ -5,6 +5,7 @@ import {Router, Route} from 'react-router';
 import App from './app';
 import Home from './home';
 import Search from './search';
+import Draft from './draft';
 import ReactGA from 'react-ga';
 
 if (process.env.NODE_ENV !== 'development') {
@@ -26,6 +27,7 @@ const Routes = (props) => (
         <Route component={App}>
             <Route path="/" component={Home}/>
             <Route path="/search" component={Search}/>
+            <Route path="/draft" component={Draft}/>
         </Route>
     </Router>
 );

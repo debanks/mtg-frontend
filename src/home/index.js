@@ -86,20 +86,24 @@ class Home extends Component {
                     <Grid>
                         <Row>
                             <Col md={8}>
-                                <div className="glossy one">
-                                    <div className="bottom-text">
-                                        <h3>Test Draft</h3>
-                                        <p>Practice your drafting skills in the latest standard sets</p>
+                                <a href="/draft">
+                                    <div className="glossy one">
+                                        <div className="bottom-text">
+                                            <h3>Test Draft</h3>
+                                            <p>Practice your drafting skills in the latest standard sets</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </Col>
                             <Col md={4}>
-                                <div className="glossy two">
-                                    <div className="bottom-text">
-                                        <h3>Build Your Deck</h3>
-                                        <p>Add your decks</p>
+                                <a href="/build">
+                                    <div className="glossy two">
+                                        <div className="bottom-text">
+                                            <h3>Build Your Deck</h3>
+                                            <p>Add your decks</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </Col>
                         </Row>
                         <Row>

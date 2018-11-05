@@ -1,0 +1,216 @@
+
+@mixin linear-gradient($color1, $color2)
+  background: $color1
+  background: -moz-linear-gradient(left, $color1 0%, $color1 33%, $color2 100%)
+  background: -webkit-linear-gradient(left, $color1 0%,$color1 33%,$color2 100%)
+  background: linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
+
+.DraftComponent
+  padding: 100px 0 60px 0
+  color: #f2f5f7
+  .loading
+    display: block
+    text-align: center
+    font-size: 48px
+    color: #ffffff
+  .twelve-width
+    max-width: 1200px
+    margin: 0 auto
+  .initial
+    p
+      font-size: 16px
+      line-height: 24px
+    .draft-label
+      font-size: 24px
+      margin-bottom: 10px
+      color: #ffffff
+    .drop-container
+      margin-top: 60px
+      height: 120px
+      margin-bottom: 20px
+      padding: 0 10%
+    .btn-success
+      display: block
+      margin: 0 10%
+      width: 80%
+      background: #5bc0de
+      padding: 10px 20px
+      font-size: 16px
+    .dropdown
+      display: block
+      .btn
+        width: 100%
+        padding: 8px 20px
+        background: transparent
+        border: 2px solid #5bc0de
+        border-radius: 6px
+        font-size: 24px
+        color: #5bc0de
+        display: block
+  .draft-info
+    margin-bottom: 25px
+    .images
+      display: inline-block
+      vertical-align: top
+      margin-top: -10px
+    img
+      vertical-align: middle
+      height: 50px
+      margin-right: 10px
+      &.active
+        height: 75px
+    .pack-text
+      display: inline-block
+      margin-left: 5px
+    .set-name
+      color: #b4b4b4
+    .pack-num
+      font-size: 20px
+      color: #fff
+    .pick-num
+      font-size: 24px
+      color: #c2c2c2
+      margin-right: 15px
+  .deck-section
+    .text
+      display: inline-block
+    .amount
+      color: #aaa
+      font-size: 14px
+    .pull-right
+      font-size: 28px
+      margin-top: 10px
+    .deck-name
+      text-transform: uppercase
+      font-size: 20px
+      background: #020609
+      margin: 0 -5px
+      color: #ffffff
+      padding: 7px 15px
+      cursor: pointer
+      border: 1px solid #333639
+      &:hover
+        background: rgba(255,255,255,0.05)
+  .deck
+    border-left: 1px solid #333639
+    border-right: 1px solid #333639
+    border-bottom: 1px solid #333639
+    min-height: 500px
+    background: rgba(0,0,0,0.2)
+    padding: 5px 0
+    &:hover
+      background: rgba(255,255,255,0.05)
+    .deck-card
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+      border: 2px solid #333639
+      background: #000
+      border-radius: 10px
+      margin: 2px 5px
+      position: relative
+      .hoverable
+        display: none
+        position: absolute
+        top: -70px
+        right: 110%
+        width: 300px
+        z-index: 10
+        img
+          width: 100%
+          border-radius: 15px
+          box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+      &:hover
+        .hoverable
+          display: block
+      .number
+        color: #ffffff
+        padding: 5px 8px
+        line-height: 22px
+      .card
+        border-left: 2px solid #333639
+        margin: -2px -2px -2px 0
+        border-radius: 10px
+        flex: 2 0 120px
+        background: #e2e2e2
+        overflow: hidden
+        padding: 4px
+        &.U
+          background: #337ab7
+        &.G
+          background: #068200
+        &.W
+          background: #e2e2e2
+        &.R
+          background: #d9534f
+        &.B
+          background: #5e5e5e
+        &.BG, &.GB
+          @include linear-gradient(#5e5e5e, #068200)
+        &.BR, &.RB
+          @include linear-gradient(#5e5e5e, #d9534f)
+        &.BU, &.UB
+          @include linear-gradient(#5e5e5e, #337ab7)
+        &.BW, &.GW
+          @include linear-gradient(#5e5e5e, #e2e2e2)
+        &.GR, &.RG
+          @include linear-gradient(#068200, #d9534f)
+        &.GU, &.UG
+          @include linear-gradient(#068200, #337ab7)
+        &.GW, &.WG
+          @include linear-gradient(#068200, #e2e2e2)
+        &.RU, &.UR
+          @include linear-gradient(#d9534f, #337ab7)
+        &.RW, &.WR
+          @include linear-gradient(#d9534f, #e2e2e2)
+        .card-inner
+          height: 28px
+          display: flex
+          border-radius: 8px
+          box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+          background: #eea236
+          &.U, &.G, &.B, &.R, &.W
+            background: rgba(255,255,255,0.4)
+          .card-name
+            flex: 1 1 60px
+            color: #000
+            line-height: 28px
+            padding: 0 5px
+            font-weight: bold
+          .card-cost
+            padding: 3px
+            img
+              margin-left: 2px
+              height: 18px
+              border-radius: 50%
+              box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+  .cards-flex
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    .card
+      display: inline-block
+      flex: 0 0 150px
+      margin: 0 20px 20px 0
+      position: relative
+      .hoverable
+        display: none
+        position: absolute
+        top: -50px
+        left: 180px
+        width: 300px
+        z-index: 10
+        img
+          width: 100%
+          border-radius: 15px
+          box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+      &:hover
+        .hoverable
+          display: block
+      img
+        width: 100%
+        cursor: pointer
+        border-radius: 15px
+        box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+        &:hover
+          box-shadow: 0 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(255,255,255,0.2)
