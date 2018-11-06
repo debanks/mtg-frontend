@@ -16,18 +16,7 @@ class Home extends Component {
         super(props);
 
         this.state = {
-            recent: {
-                multiplayer_matches: 0,
-                multiplayer_winrate: 0,
-                multiplayer_kd: 0,
-                multiplayer_score_match: 0,
-                multiplayer_accuracy: 0,
-                multiplayer_hsratio: 0
-            },
-            weapons: [],
-            inner: [],
-            outer: [],
-            movers: [],
+            decks:[],
             loading: true
         };
 
@@ -42,6 +31,7 @@ class Home extends Component {
     processData(data) {
 
         this.setState({
+            decks: data.decks,
             loading: false
         })
     }
@@ -96,7 +86,7 @@ class Home extends Component {
                                 </a>
                             </Col>
                             <Col md={4}>
-                                <a href="/build">
+                                <a href="/decks">
                                     <div className="glossy two">
                                         <div className="bottom-text">
                                             <h3>Build Your Deck</h3>
@@ -107,34 +97,31 @@ class Home extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={3}>
-                                <div className="glossy small three">
-                                    <div className="bottom-text">
-                                        Small
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col md={3}>
-                                <div className="glossy small hour">
-                                    <div className="bottom-text">
-                                        Small
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col md={3}>
-                                <div className="glossy small five">
-                                    <div className="bottom-text">
-                                        Small
-                                    </div>
-                                </div>
-                            </Col>
-                            <Col md={3}>
-                                <div className="glossy small six">
-                                    <div className="bottom-text">
-                                        Small
-                                    </div>
-                                </div>
-                            </Col>
+                            {this.state.decks.map(function(deck, key) {
+                                let colors = deck.colors.split(',');
+                                return <Col sm={3}>
+                                    <a href={"/decks/" + deck.id}>
+                                        <div className="deck">
+                                            <img src={deck.image}/>
+                                            <div className="deck-name">
+                                                <div className="name">{deck.name}</div>
+                                                <Grid className="meta">
+                                                    <Row>
+                                                        <Col xs={6} style={{borderRight: '1px solid #e2e2e2'}}>
+                                                            {deck.type}
+                                                        </Col>
+                                                        <Col xs={6}>
+                                                            {colors.map(function(color, key2) {
+                                                                return <img src={"/images/icons/" + color + '.svg'}/>
+                                                            })}
+                                                        </Col>
+                                                    </Row>
+                                                </Grid>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </Col>;
+                            })}
                         </Row>
                     </Grid>
                     {this.state.loading && <div className="loading">

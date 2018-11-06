@@ -6,6 +6,9 @@ import App from './app';
 import Home from './home';
 import Search from './search';
 import Draft from './draft';
+import Decks from './decks';
+import DeckEditor from './decks/edit';
+import DeckViewer from './decks/view';
 import ReactGA from 'react-ga';
 
 if (process.env.NODE_ENV !== 'development') {
@@ -28,6 +31,10 @@ const Routes = (props) => (
             <Route path="/" component={Home}/>
             <Route path="/search" component={Search}/>
             <Route path="/draft" component={Draft}/>
+            <Route path="/decks" component={Decks}/>
+            <Route path="/decks/new" component={DeckEditor}/>
+            <Route path="/decks/:id/edit" component={DeckEditor}/>
+            <Route path="/decks/:id" component={DeckViewer}/>
         </Route>
     </Router>
 );

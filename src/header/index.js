@@ -14,7 +14,7 @@ class Header extends Component {
         let isHome = this.props.location === '/';
         let isDraft = this.props.location.indexOf("/draft") > -1;
         let isSearch = this.props.location.indexOf("/search") > -1;
-        let isBuild = this.props.location.indexOf("/build") > -1;
+        let isDecks = this.props.location.indexOf("/decks") > -1;
 
         return (
             <div className={classnames('HeaderComponent', className)}>
@@ -30,7 +30,7 @@ class Header extends Component {
                         <Nav className="close-nav">
                             <li className={isHome ? 'active' : ''}><a href="/">Home</a></li>
                             <li className={isDraft ? 'active' : ''}><a href="/draft">Draft</a></li>
-                            <li className={isBuild ? 'active' : ''}><a href="/build">Build</a></li>
+                            <li className={isDecks ? 'active' : ''}><a href="/decks">Decks</a></li>
                             <li className={isSearch ? 'active' : ''}><a href="/search">Search</a></li>
                         </Nav>
                     </Navbar.Collapse>
@@ -42,7 +42,7 @@ class Header extends Component {
                         <div className="placeholder">
 
                         </div>
-                        <a className={"nav-option" + (isBuild ? ' active' : '')} href="/build">BUILD</a>
+                        <a className={"nav-option" + (isDecks ? ' active' : '')} href="/decks">DECKS</a>
                         <a className={"nav-option" + (isSearch ? ' active' : '')} href="/search">SEARCH</a>
                     </div>
 

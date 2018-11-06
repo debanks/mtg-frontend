@@ -35,7 +35,6 @@ class Search extends Component {
 
         this.processData = this.processData.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.form = this.form.bind(this);
         this.callApi = this.callApi.bind(this);
         this.handleArrayChange = this.handleArrayChange.bind(this);
         this.doSearch = this.doSearch.bind(this);
@@ -113,15 +112,6 @@ class Search extends Component {
         }
 
         this.setState({[type]: arr});
-    }
-
-    form() {
-
-        if (this.state.player === '') {
-            return;
-        }
-
-        browserHistory.push('/bo4-stats/' + this.state.player);
     }
 
     render() {

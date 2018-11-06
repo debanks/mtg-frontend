@@ -196,8 +196,6 @@ class Draft extends Component {
             return;
         }
 
-        console.log(source);
-
         if (source.droppableId !== destination.droppableId) {
 
             let splits = destination.droppableId.split('-');
@@ -301,11 +299,12 @@ class Draft extends Component {
         };
 
         let _ = require('lodash');
-        let mainKeys = Object.keys(this.state.deck.main);
-        let sideKeys = Object.keys(this.state.deck.sideboard);
 
         let mainCards = Object.values(this.state.deck.main);
         let sideCards = Object.values(this.state.deck.sideboard);
+
+        let mainCount = mainCards.reduce((prev, next) => prev + next.number, 0);
+        let sideCount = sideCards.reduce((prev, next) => prev + next.number, 0);
 
         mainCards = _.sortBy(mainCards, ['cost']);
         sideCards = _.sortBy(sideCards, ['cost']);
@@ -416,7 +415,7 @@ class Draft extends Component {
                                                     >
                                                         <div className="text">
                                                             DECK
-                                                            <div className="amount">{mainCards.length} / 40</div>
+                                                            <div className="amount">{mainCount} / 40</div>
                                                         </div>
                                                         <div className="pull-right">
                                                             {this.state.deckSel === 'main' && <FaCaretDown/>}
@@ -479,7 +478,7 @@ class Draft extends Component {
                                                     >
                                                         <div className="text">
                                                             Sideboard
-                                                            <div className="amount">{sideCards.length} Cards</div>
+                                                            <div className="amount">{sideCount} Cards</div>
                                                         </div>
                                                         <div className="pull-right">
                                                             {this.state.deckSel === 'sideboard' && <FaCaretDown/>}
