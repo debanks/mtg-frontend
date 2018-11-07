@@ -37,6 +37,63 @@
   .meta
     img
       height: 20px
+      margin-right: 3px
+  .breakdown-bar
+    margin-top: 20px
+    height: 10px
+    position: relative
+    .bar
+      position: absolute
+      top: 0
+      height: 10px
+      &.lands
+        background: #fdd017
+      &.spells
+        background: #337ab7
+      &.creatures
+        background: #e2e5e8
+
+  .middle
+    margin: 20px 0
+    .col-sm-7
+      padding-left: 0
+    .col-sm-5
+      padding-right: 0
+    p
+      font-size: 16px
+      line-height: 24px
+  .section
+    background: rgba(0,0,0,0.5)
+    padding: 20px
+  .stat-flex
+    display: flex
+    flex-wrap: nowrap
+    .bar-stat
+      flex: 1 1 40px
+      max-width: 80px
+      margin-right: 3px
+      .total
+        padding: 5px
+        border: 1px solid #333639
+        text-align: center
+      img
+        width: 60%
+        margin: 5px 20%
+      .bar
+        border: 1px solid #333639
+        height: 150px
+        margin-top: 3px
+        position: relative
+        .spell-bar
+          position: absolute
+          left: 0
+          width: 100%
+          background: #337ab7
+        .creature-bar
+          position: absolute
+          left: 0
+          width: 100%
+          background: #e2e5e8
 .DeckEditor
   form
     width: 100%

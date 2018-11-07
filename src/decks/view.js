@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {Grid, Row, Col, Button, FormGroup, InputGroup, Collapse} from 'react-bootstrap';
+import {Grid, Row, Col, Button, FormGroup, InputGroup, Collapse, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import {FaSearch, FaSpinner, FaCaretRight, FaCaretDown} from 'react-icons/fa';
 import DocumentMeta from 'react-document-meta';
 import './index.sass';
@@ -67,22 +67,24 @@ class DeckViewer extends Component {
 
             let card = cards[i];
 
-            if (!stats.costs[card.total_cost]) {
-                stats.costs[card.total_cost] = {
-                    creatures: [],
-                    spells: []
+            if (card.deck_type === 'main') {
+                if (!stats.costs[card.total_cost]) {
+                    stats.costs[card.total_cost] = {
+                        creatures: [],
+                        spells: []
+                    }
                 }
-            }
 
-            if (card.type.indexOf('Creature') > -1 || card.type.indexOf('Planeswalker') > -1) {
-                stats.costs[card.total_cost].creatures.push(card);
-                stats.breakdown.creatures++;
-            } else if (card.type.indexOf('Land') > -1) {
-                stats.costs[card.total_cost].creatures.push(card);
-                stats.breakdown.spells++;
-            } else {
-                stats.lands.push(card);
-                stats.breakdown.lands++;
+                if (card.type.indexOf('Creature') > -1 || card.type.indexOf('Planeswalker') > -1) {
+                    stats.costs[card.total_cost].creatures.push(card);
+                    stats.breakdown.creatures++;
+                } else if (card.type.indexOf('Land') === -1) {
+                    stats.costs[card.total_cost].spells.push(card);
+                    stats.breakdown.spells++;
+                } else {
+                    stats.lands.push(card);
+                    stats.breakdown.lands++;
+                }
             }
 
             if (!deck[card.deck_type][card.id]) {
@@ -137,6 +139,51 @@ class DeckViewer extends Component {
         sideCards = _.sortBy(sideCards, ['cost']);
         let colors = this.state.meta.colors.split(',');
 
+        let costs = {
+            '0': {total: 0, creatures: 0, spells: 0},
+            '1': {total: 0, creatures: 0, spells: 0},
+            '2': {total: 0, creatures: 0, spells: 0},
+            '3': {total: 0, creatures: 0, spells: 0},
+            '4': {total: 0, creatures: 0, spells: 0},
+            '5': {total: 0, creatures: 0, spells: 0},
+            '6': {total: 0, creatures: 0, spells: 0},
+            '7+': {total: 0, creatures: 0, spells: 0},
+        };
+
+        let statKeys = Object.keys(this.state.stats.costs);
+        let max = 0;
+        for (let i = 0; i < statKeys.length; i++) {
+
+            let cost = statKeys[i];
+            let down = this.state.stats.costs[cost];
+
+            if (cost >= 7) {
+                costs['7+'].total += down.creatures.length;
+                costs['7+'].total += down.spells.length;
+                costs['7+'].creatures += down.creatures.length;
+                costs['7+'].spells += down.spells.length;
+
+                if (costs['7+'].total > max) {
+                    max = costs['7+'].total
+                }
+            } else {
+                costs[cost].total += down.creatures.length;
+                costs[cost].total += down.spells.length;
+                costs[cost].creatures += down.creatures.length;
+                costs[cost].spells += down.spells.length;
+
+                if (costs[cost].total > max) {
+                    max = costs[cost].total
+                }
+            }
+        }
+
+        console.log(costs);
+
+        let costBars = Object.keys(costs);
+        let breakdown = this.state.stats.breakdown;
+        let total = breakdown.creatures + breakdown.spells + breakdown.lands;
+
         return (
             <DocumentMeta {...meta}>
                 <div className="DeckViewerComponent DraftComponent">
@@ -144,13 +191,68 @@ class DeckViewer extends Component {
                         {this.state.type === 'base' && <Grid>
                             <Row>
                                 <Col md={8}>
-                                    <h2>{this.state.meta.name}</h2>
-                                    <div className="meta">
-                                        <span>{this.state.meta.type} - </span>
-                                        {colors.map(function(color, key2) {
-                                            return <img src={"/images/icons/" + color + '.svg'}/>
-                                        })}
+                                    <div className="section">
+                                        <h2>{this.state.meta.name}</h2>
+                                        <div className="meta">
+                                            <span>{this.state.meta.type} - </span>
+                                            {colors.map(function (color, key2) {
+                                                return <img src={"/images/icons/" + color + '.svg'}/>
+                                            })}
+                                        </div>
+                                        {total > 0 && <div className="breakdown-bar">
+                                            <OverlayTrigger placement="bottom" overlay={<Tooltip>{breakdown.lands} Lands</Tooltip>}>
+                                                <div className="bar lands" style={{
+                                                    width: (100 * breakdown.lands / total) + '%',
+                                                    left: 0
+                                                }}></div>
+                                            </OverlayTrigger>
+                                            <OverlayTrigger placement="bottom" overlay={<Tooltip>{breakdown.creatures} Creatures</Tooltip>}>
+                                                <div className="bar creatures" style={{
+                                                    width: (100 * breakdown.creatures / total - 1) + '%',
+                                                    left: (100 * breakdown.lands / total + 1) + '%'
+                                                }}></div>
+                                            </OverlayTrigger>
+                                            <OverlayTrigger placement="bottom" overlay={<Tooltip>{breakdown.spells} Spells</Tooltip>}>
+                                                <div className="bar spells" style={{
+                                                    width: (100 * breakdown.spells / total - 1) + '%',
+                                                    left: (100 * breakdown.lands / total + 100 * breakdown.creatures / total + 1) + '%'
+                                                }}></div>
+                                            </OverlayTrigger>
+                                        </div>}
                                     </div>
+                                    <Grid className="middle">
+                                        <Row>
+                                            <Col sm={7}>
+                                                <p>{this.state.meta.description}</p>
+                                            </Col>
+                                            <Col sm={5}>
+                                                <div className="stat-flex">
+                                                    {costBars.map(function (cost, key) {
+
+                                                        return <div className="bar-stat" key={key}>
+                                                            <div className="total">{costs[cost].total}</div>
+                                                            <div className="bar">
+                                                                <OverlayTrigger placement="left" overlay={<Tooltip>{costs[cost].spells} Spells</Tooltip>}>
+                                                                    <div className="spell-bar" style={{
+                                                                        height: (100 * costs[cost].spells / max) + '%',
+                                                                        bottom: 0
+                                                                    }}></div>
+                                                                </OverlayTrigger>
+                                                                <OverlayTrigger placement="left" overlay={<Tooltip>{costs[cost].creatures} Creatures</Tooltip>}>
+
+                                                                    <div className="creature-bar" style={{
+                                                                        height: (costs[cost].creatures / max * 100) + '%',
+                                                                        bottom: (costs[cost].spells / max * 100) + '%'
+                                                                    }}></div>
+                                                                </OverlayTrigger>
+                                                            </div>
+                                                            <img src={"/images/icons/" + cost + '.svg'}/>
+                                                        </div>;
+                                                    })}
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Grid>
                                 </Col>
                                 <Col md={4}>
 
