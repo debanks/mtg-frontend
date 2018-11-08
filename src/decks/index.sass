@@ -33,6 +33,12 @@
       &:hover
         > img
           box-shadow: 0 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(255,255,255,0.2)
+.image-tooltip
+  .tooltip-inner
+    padding: 0
+    img
+      width: 200px
+      border-radius: 10px
 .DeckViewerComponent
   .meta
     img
@@ -52,19 +58,91 @@
         background: #337ab7
       &.creatures
         background: #e2e5e8
-
+  .hands
+    h3
+      border-top: 1px solid #333639
+      border-bottom: 1px solid #333639
+      padding: 10px
+    .hand
+      position: relative
+      margin-bottom: 30px
+      &.simul:not(:first-child)
+        margin-top: -150px
+      .card
+        display: inline-block
+        position: relative
+        width: 60px
+        img
+          border-radius: 15px
+          box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+          width: 200px
+        &:hover
+          z-index: 2
+          img
+            box-shadow: 0 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(255,255,255,0.2)
+  .simulate-options
+    text-align: right
+    margin-top: 20px
+    span
+      margin-right: 10px
+    .btn
+      margin-left: 5px
+    .btn-default
+      background: #337ab7
+      color: #fff
+      border: 1px solid #2269a6
+    .dropdown
+      .btn
+        background: transparent
+        border: 1px solid #337ab7
+        color: #337ab7
+  .separator
+    height: 2px
+    background: #337ab7
+    margin: 20px 0
+  .simulations
+    .simulate-card
+      margin: 3px 0
+      .col-xs-3
+        text-wrap: none
+        text-overflow: ellipsis
+        white-space: nowrap
+      .bar
+        border: 1px solid #333639
+        background: rgba(0,0,0,0.2)
+        position: relative
+        height: 20px
+        .inner
+          height: 18px
+          position: absolute
+          left: 0
+          top: 0
+          background: #5bc0de
+      .percent
+        text-align: right
   .middle
     margin: 20px 0
     .col-sm-7
-      padding-left: 0
+      padding-left: 5px
     .col-sm-5
-      padding-right: 0
+      padding-right: 5px
     p
       font-size: 16px
       line-height: 24px
   .section
     background: rgba(0,0,0,0.5)
     padding: 20px
+    .pull-right
+      .btn
+        background: transparent
+        border: 1px solid #337ab7
+        color: #337ab7
+        &.active
+          background: #337ab7
+          color: #fff
+          border: 1px solid #2269a6
+      .btn:nth-child(2)
+        margin-left: -1px
   .stat-flex
     display: flex
     flex-wrap: nowrap

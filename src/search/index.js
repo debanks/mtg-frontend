@@ -41,7 +41,8 @@ class Search extends Component {
         this.nextPage = this.nextPage.bind(this);
     }
 
-    doSearch() {
+    doSearch(e) {
+        e.preventDefault();
         this.setState({loading: true, page: 1});
         this.callApi(this.state.query, this.state.sets, this.state.costs, this.state.orderBy, this.state.ordering, this.state.colors, this.state.rarities, 1, true);
     }
@@ -135,98 +136,103 @@ class Search extends Component {
 
                     <div className="options">
                         <div className="search-container">
-                            <Grid className="form-options">
-                                <Row>
-                                    <Col xs={12}>
-                                        <input name="query" onChange={this.handleInputChange} placeholder="Search through names and types"/>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={8}>
-                                        <Grid className="search-section">
-                                            <Row>
-                                                <Col xs={3}>Colors</Col>
-                                                <Col xs={9}>
-                                                    <div className="colors">
-                                                        <img src="/images/icons/B.svg" className={(this.state.colors.indexOf('B') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'B')}/>
-                                                        <img src="/images/icons/G.svg" className={(this.state.colors.indexOf('G') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'G')}/>
-                                                        <img src="/images/icons/R.svg" className={(this.state.colors.indexOf('R') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'R')}/>
-                                                        <img src="/images/icons/U.svg" className={(this.state.colors.indexOf('U') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'U')}/>
-                                                        <img src="/images/icons/W.svg" className={(this.state.colors.indexOf('W') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'W')}/>
-                                                        <img src="/images/icons/C.svg" className={(this.state.colors.indexOf('C') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('colors', 'C')}/>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={3}>Costs</Col>
-                                                <Col xs={9}>
-                                                    <div className="colors">
-                                                        <img src="/images/icons/0.svg" className={(this.state.costs.indexOf('0') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '0')}/>
-                                                        <img src="/images/icons/1.svg" className={(this.state.costs.indexOf('1') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '1')}/>
-                                                        <img src="/images/icons/2.svg" className={(this.state.costs.indexOf('2') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '2')}/>
-                                                        <img src="/images/icons/3.svg" className={(this.state.costs.indexOf('3') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '3')}/>
-                                                        <img src="/images/icons/4.svg" className={(this.state.costs.indexOf('4') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '4')}/>
-                                                        <img src="/images/icons/5.svg" className={(this.state.costs.indexOf('5') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '5')}/>
-                                                        <img src="/images/icons/6.svg" className={(this.state.costs.indexOf('6') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '6')}/>
-                                                        <img src="/images/icons/7+.png" className={(this.state.costs.indexOf('7+') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('costs', '7+')}/>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={3}>Sets</Col>
-                                                <Col xs={9}>
-                                                    <div className="colors">
-                                                        <img src="/images/icons/rix.png" className={(this.state.sets.indexOf('rix') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('sets', 'rix')}/>
-                                                        <img src="/images/icons/xln.png" className={(this.state.sets.indexOf('xln') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('sets', 'xln')}/>
-                                                        <img src="/images/icons/m19.png" className={(this.state.sets.indexOf('m19') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('sets', 'm19')}/>
-                                                        <img src="/images/icons/dom.png" className={(this.state.sets.indexOf('dom') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('sets', 'dom')}/>
-                                                        <img src="/images/icons/grn.png" className={(this.state.sets.indexOf('grn') > -1 ? 'active' : '')}
-                                                             onClick={() => this.handleArrayChange('sets', 'grn')}/>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={3}>Rarity</Col>
-                                                <Col xs={9}>
-                                                    <div className="colors">
-                                                        <div className={"rarity" + (this.state.rarities.indexOf('common') > -1 ? ' active' : '')}
-                                                             onClick={() => this.handleArrayChange('rarities', 'common')}>Common</div>
-                                                        <div className={"rarity" + (this.state.rarities.indexOf('uncommon') > -1 ? ' active' : '')}
-                                                             onClick={() => this.handleArrayChange('rarities', 'uncommon')}>Uncommon</div>
-                                                        <div className={"rarity" + (this.state.rarities.indexOf('rare') > -1 ? ' active' : '')}
-                                                             onClick={() => this.handleArrayChange('rarities', 'rare')}>Rare</div>
-                                                        <div className={"rarity" + (this.state.rarities.indexOf('mythic') > -1 ? ' active' : '')}
-                                                             onClick={() => this.handleArrayChange('rarities', 'mythic')}>Mythic</div>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Grid>
-                                    </Col>
-                                    <Col sm={4}>
+                            <form onSubmit={this.doSearch}>
+                                <Grid className="form-options">
+                                    <Row>
+                                        <Col xs={12}>
+                                            <div className="search-query">
+                                                <input name="query" onChange={this.handleInputChange} placeholder="Search through names and types"/>
+                                                <Button type="submit"><FaSearch/></Button>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={12}>
+                                            <Grid className="search-section">
+                                                <Row>
+                                                    <Col xs={3}>Colors</Col>
+                                                    <Col xs={9}>
+                                                        <div className="colors">
+                                                            <img src="/images/icons/B.svg" className={(this.state.colors.indexOf('B') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'B')}/>
+                                                            <img src="/images/icons/G.svg" className={(this.state.colors.indexOf('G') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'G')}/>
+                                                            <img src="/images/icons/R.svg" className={(this.state.colors.indexOf('R') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'R')}/>
+                                                            <img src="/images/icons/U.svg" className={(this.state.colors.indexOf('U') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'U')}/>
+                                                            <img src="/images/icons/W.svg" className={(this.state.colors.indexOf('W') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'W')}/>
+                                                            <img src="/images/icons/C.svg" className={(this.state.colors.indexOf('C') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('colors', 'C')}/>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs={3}>Costs</Col>
+                                                    <Col xs={9}>
+                                                        <div className="colors">
+                                                            <img src="/images/icons/0.svg" className={(this.state.costs.indexOf('0') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '0')}/>
+                                                            <img src="/images/icons/1.svg" className={(this.state.costs.indexOf('1') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '1')}/>
+                                                            <img src="/images/icons/2.svg" className={(this.state.costs.indexOf('2') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '2')}/>
+                                                            <img src="/images/icons/3.svg" className={(this.state.costs.indexOf('3') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '3')}/>
+                                                            <img src="/images/icons/4.svg" className={(this.state.costs.indexOf('4') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '4')}/>
+                                                            <img src="/images/icons/5.svg" className={(this.state.costs.indexOf('5') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '5')}/>
+                                                            <img src="/images/icons/6.svg" className={(this.state.costs.indexOf('6') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '6')}/>
+                                                            <img src="/images/icons/7+.png" className={(this.state.costs.indexOf('7+') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('costs', '7+')}/>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs={3}>Sets</Col>
+                                                    <Col xs={9}>
+                                                        <div className="colors">
+                                                            <img src="/images/icons/rix.png" className={(this.state.sets.indexOf('rix') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('sets', 'rix')}/>
+                                                            <img src="/images/icons/xln.png" className={(this.state.sets.indexOf('xln') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('sets', 'xln')}/>
+                                                            <img src="/images/icons/m19.png" className={(this.state.sets.indexOf('m19') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('sets', 'm19')}/>
+                                                            <img src="/images/icons/dom.png" className={(this.state.sets.indexOf('dom') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('sets', 'dom')}/>
+                                                            <img src="/images/icons/grn.png" className={(this.state.sets.indexOf('grn') > -1 ? 'active' : '')}
+                                                                 onClick={() => this.handleArrayChange('sets', 'grn')}/>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs={3}>Rarity</Col>
+                                                    <Col xs={9}>
+                                                        <div className="colors">
+                                                            <div className={"rarity" + (this.state.rarities.indexOf('common') > -1 ? ' active' : '')}
+                                                                 onClick={() => this.handleArrayChange('rarities', 'common')}>Common
+                                                            </div>
+                                                            <div className={"rarity" + (this.state.rarities.indexOf('uncommon') > -1 ? ' active' : '')}
+                                                                 onClick={() => this.handleArrayChange('rarities', 'uncommon')}>Uncommon
+                                                            </div>
+                                                            <div className={"rarity" + (this.state.rarities.indexOf('rare') > -1 ? ' active' : '')}
+                                                                 onClick={() => this.handleArrayChange('rarities', 'rare')}>Rare
+                                                            </div>
+                                                            <div className={"rarity" + (this.state.rarities.indexOf('mythic') > -1 ? ' active' : '')}
+                                                                 onClick={() => this.handleArrayChange('rarities', 'mythic')}>Mythic
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                            </Grid>
+                                        </Col>
+                                    </Row>
 
-                                        <Button onClick={() => this.doSearch()}>Search</Button>
-                                    </Col>
-                                </Row>
-
-                            </Grid>
+                                </Grid>
+                            </form>
                         </div>
                     </div>
                     <div className="search-container">
