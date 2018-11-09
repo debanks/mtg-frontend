@@ -333,6 +333,7 @@ class DeckViewer extends Component {
         let simulation = this.state.simulation;
         let landKeys = [];
         let maxLands = 0;
+        let maxPicks = 0;
         let cardKeys = [];
 
         if (simulation !== false) {
@@ -344,11 +345,17 @@ class DeckViewer extends Component {
                     maxLands = simulation.stats.lands[landKeys[i]];
                 }
             }
+
+            for (let i = 0; i < cardKeys.length; i++) {
+                if (simulation.stats.cards[cardKeys[i]] > maxPicks) {
+                    maxPicks = simulation.stats.cards[cardKeys[i]];
+                }
+            }
         }
 
         return (
             <DocumentMeta {...meta}>
-                <div className="DeckViewerComponent DraftComponent">
+                <div className={"DeckViewerComponent DraftComponent " + this.state.meta.colors.replace(',', '')}>
                     <div className="twelve-width">
                         <Grid>
                             <Row>
@@ -537,7 +544,7 @@ class DeckViewer extends Component {
                                                 <Col xs={8}>
                                                     <div className="bar">
                                                         <OverlayTrigger placement="top" overlay={<Tooltip>{simulation.stats.cards[id]} Times</Tooltip>}>
-                                                            <div className="inner" style={{width: (simulation.stats.cards[id] / (7 * simulation.num) * 100) + '%'}}></div>
+                                                            <div className="inner" style={{width: (simulation.stats.cards[id] / maxPicks * 100) + '%'}}></div>
                                                         </OverlayTrigger>
                                                     </div>
                                                 </Col>

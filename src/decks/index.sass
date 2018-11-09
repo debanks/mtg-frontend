@@ -1,3 +1,18 @@
+@mixin linear-gradient-background($color1, $color2)
+  background: $color1
+  background: -moz-linear-gradient(left, $color1 0%, $color1 33%, $color2 100%)
+  background: -webkit-linear-gradient(left, $color1 0%,$color1 33%,$color2 100%)
+  background: linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
+
+@mixin linear-gradient-color($color1, $color2)
+  color: $color1
+  color: -moz-linear-gradient(left, $color1 0%, $color1 33%, $color2 100%)
+  color: -webkit-linear-gradient(left, $color1 0%,$color1 33%,$color2 100%)
+  color: linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
+
+@mixin linear-gradient-border($color1, $color2)
+  border: 1px solid linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
+
 .DecksComponent
   padding: 100px 0 60px 0
   .decks-flex
@@ -172,6 +187,174 @@
           left: 0
           width: 100%
           background: #e2e5e8
+  &.U
+    .separator
+      background: #337ab7
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #337ab7
+          color: #337ab7
+          &.active
+            background: #337ab7
+            color: #fff
+            border: 1px solid #2269a6
+  &.G
+    .separator
+      background: #068200
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #068200
+          color: #068200
+          &.active
+            background: #068200
+            color: #fff
+            border: 1px solid #068200
+  &.W
+    .separator
+      background: #e2e2e2
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #e2e2e2
+          color: #e2e2e2
+          &.active
+            background: #e2e2e2
+            color: #000
+            border: 1px solid #e2e2e2
+  &.R
+    .separator
+      background: #d9534f
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #d9534f
+          color: #d9534f
+          &.active
+            background: #d9534f
+            color: #fff
+            border: 1px solid #d9534f
+  &.B
+    .separator
+      background: #5e5e5e
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #5e5e5e
+          color: #5e5e5e
+          &.active
+            background: #5e5e5e
+            color: #fff
+            border: 1px solid #5e5e5e
+  &.BG, &.GB
+    .separator
+      @include linear-gradient-background(#5e5e5e, #068200)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #5e5e5e
+          color: #5e5e5e
+          &.active
+            background: #068200
+            color: #fff
+            border: 1px solid #068200
+  &.BR, &.RB
+    .separator
+      @include linear-gradient-background(#5e5e5e, #d9534f)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #5e5e5e
+          color: #5e5e5e
+          &.active
+            background: #d9534f
+            color: #fff
+            border: 1px solid #d9534f
+  &.BU, &.UB
+    .separator
+      @include linear-gradient-background(#5e5e5e, #337ab7)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #5e5e5e
+          color: #5e5e5e
+          &.active
+            background: #337ab7
+            color: #fff
+            border: 1px solid #337ab7
+  &.BW, &.GW
+    .separator
+      @include linear-gradient-background(#5e5e5e, #e2e2e2)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #5e5e5e
+          color: #5e5e5e
+          &.active
+            background: #e2e2e2
+            color: #000
+            border: 1px solid #e2e2e2
+  &.GR, &.RG
+    .separator
+      @include linear-gradient-background(#068200, #d9534f)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #068200
+          color: #068200
+          &.active
+            background: #d9534f
+            color: #fff
+            border: 1px solid #d9534f
+  &.GU, &.UG
+    .separator
+      @include linear-gradient-background(#068200, #337ab7)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #068200
+          color: #068200
+          &.active
+            background: #337ab7
+            color: #fff
+            border: 1px solid #337ab7
+  &.GW, &.WG
+    .separator
+      @include linear-gradient-background(#068200, #e2e2e2)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #068200
+          color: #068200
+          &.active
+            background: #e2e2e2
+            color: #000
+            border: 1px solid #e2e2e2
+  &.RU, &.UR
+    .separator
+      @include linear-gradient-background(#d9534f, #337ab7)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #d9534f
+          color: #d9534f
+          &.active
+            background: #337ab7
+            color: #fff
+            border: 1px solid #337ab7
+  &.RW, &.WR
+    .separator
+      @include linear-gradient-background(#d9534f, #e2e2e2)
+    .section
+      .pull-right
+        .btn
+          border: 1px solid #d9534f
+          color: #d9534f
+          &.active
+            background: #e2e2e2
+            color: #000
+            border: 1px solid #e2e2e2
 .DeckEditor
   form
     width: 100%
