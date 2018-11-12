@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import {Grid, Row, Col, Button, FormGroup, InputGroup, DropdownButton, MenuItem, Collapse} from 'react-bootstrap';
-import {FaSearch, FaSpinner, FaCaretDown, FaCaretRight, FaRedo} from 'react-icons/fa';
+import {FaSearch, FaSpinner, FaCaretDown, FaCaretRight, FaRedo, FaStar, FaStarHalf} from 'react-icons/fa';
 import DocumentMeta from 'react-document-meta';
 import './index.sass';
 import Dimensions from 'react-dimensions';
@@ -125,11 +125,27 @@ class Helper extends Component {
                                         </div>
                                     </div>
                                     {options.map(function (card, key) {
+
+                                        let stars = [];
+
+                                        for (let i = 1; i < 6; i++) {
+                                            if (i * 2 <= card.value) {
+                                                stars.push(<FaStar/>)
+                                            } else if (card.value > (i-1) * 2) {
+                                                stars.push(<FaStarHalf/>)
+                                            }
+                                        }
+
                                         return <Col key={key} md={2} sm={4} xs={6}>
                                             <div className="card">
                                                 <img src={card.image} onClick={() => this.setState({bigCard: true, bigCardImage: card.image})}/>
                                                 <div className="hoverable">
                                                     <img src={card.image}/>
+                                                </div>
+                                                <div className="value">
+                                                    {stars.map(function(Icon, key2) {
+                                                        return Icon;
+                                                    })}
                                                 </div>
                                             </div>
                                         </Col>;
@@ -156,11 +172,26 @@ class Helper extends Component {
                                     loader={<div className="loader" key={0}>Loading ...</div>}
                                 >
                                     {cards.map(function (card, key) {
+
+                                        let stars = [];
+
+                                        for (let i = 1; i < 6; i++) {
+                                            if (i * 2 <= card.value) {
+                                                stars.push(<FaStar/>)
+                                            } else if (card.value > (i-1) * 2) {
+                                                stars.push(<FaStarHalf/>)
+                                            }
+                                        }
                                         return <Col key={key} md={2} sm={4} xs={6}>
                                             <div className="card">
                                                 <img src={card.image} onClick={() => this.pickCard(card)}/>
                                                 <div className="hoverable">
                                                     <img src={card.image}/>
+                                                </div>
+                                                <div className="value">
+                                                    {stars.map(function(Icon, key2) {
+                                                        return Icon;
+                                                    })}
                                                 </div>
                                             </div>
                                         </Col>;
