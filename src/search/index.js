@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
-import {Grid, Row, Col, Button, FormGroup, InputGroup} from 'react-bootstrap';
+import {Grid, Row, Col, Button, FormGroup, InputGroup, DropdownButton, MenuItem} from 'react-bootstrap';
 import {FaSearch, FaSpinner} from 'react-icons/fa';
 import DocumentMeta from 'react-document-meta';
 import './index.sass';
@@ -83,7 +83,7 @@ class Search extends Component {
         this.setState({
             loading: false,
             cards: cards,
-            hasMore: this.state.page * 25 < data.count
+            hasMore: data.cards.length === 25
         });
     }
 
@@ -128,6 +128,15 @@ class Search extends Component {
                     keywords: 'bo4,br,analytics,stats'
                 }
             }
+        };
+
+        const orderTitles = {
+            'faces.total_cost': 'Cost',
+            'faces.power': 'Power',
+            'faces.toughness': 'Toughness',
+            'cards.name': 'Card Name',
+            'cards.rarity': 'Rarity',
+            'cards.value': 'Card Value'
         };
 
         return (
@@ -225,6 +234,24 @@ class Search extends Component {
                                                                  onClick={() => this.handleArrayChange('rarities', 'mythic')}>Mythic
                                                             </div>
                                                         </div>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs={3}>Ordering</Col>
+                                                    <Col xs={9}>
+                                                        <DropdownButton title={orderTitles[this.state.orderBy]}>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'cards.name'})}>Card Name</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'cards.value'})}>Card Value</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'faces.total_cost'})}>Cost</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'faces.power'})}>Power</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'faces.rarity'})}>Rarity</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({orderBy: 'faces.toughness'})}>Toughness</MenuItem>
+                                                        </DropdownButton>
+
+                                                        <DropdownButton title={(this.state.ordering === 'asc' ? 'Ascending' : 'Descending')}>
+                                                            <MenuItem onClick={() => this.setState({ordering: 'asc'})}>Ascending</MenuItem>
+                                                            <MenuItem onClick={() => this.setState({ordering: 'desc'})}>Descending</MenuItem>
+                                                        </DropdownButton>
                                                     </Col>
                                                 </Row>
                                             </Grid>

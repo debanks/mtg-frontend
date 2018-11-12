@@ -101,7 +101,7 @@ class DeckEditor extends Component {
         this.setState({
             loading: false,
             cards: cards,
-            hasMore: this.state.page * 25 < data.count
+            hasMore: data.cards.length === 25
         });
     }
 
