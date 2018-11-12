@@ -10,6 +10,7 @@ import Decks from './decks';
 import DeckEditor from './decks/edit';
 import DeckViewer from './decks/view';
 import ReactGA from 'react-ga';
+import Helper from './draft/helper';
 
 if (process.env.NODE_ENV !== 'development') {
     ReactGA.initialize('UA-122971262-1');
@@ -31,6 +32,7 @@ const Routes = (props) => (
             <Route path="/" component={Home}/>
             <Route path="/search" component={Search}/>
             <Route path="/draft" component={Draft}/>
+            <Route path="/draft/:set" component={Helper}/>
             <Route path="/decks" component={Decks}/>
             <Route path="/decks/new" component={DeckEditor}/>
             <Route path="/decks/:id/edit" component={DeckEditor}/>

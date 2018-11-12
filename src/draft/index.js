@@ -355,6 +355,10 @@ class Draft extends Component {
                                         </DropdownButton>
                                     </div>
                                     <Button bsStyle="success" onClick={this.draft}>Begin Draft</Button>
+                                    <hr/>
+                                    <Button bsStyle="success" href={"/draft/" + this.state.set}>
+                                        {sets['grn']} Draft Helper
+                                    </Button>
                                 </Col>
                             </Row>
                         </Grid>}

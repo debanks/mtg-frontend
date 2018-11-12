@@ -5,6 +5,78 @@
   background: -webkit-linear-gradient(left, $color1 0%,$color1 33%,$color2 100%)
   background: linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
 
+.HelperComponent
+  padding: 50px 0 60px 0
+  color: #f2f5f7
+  .picks
+    background: #020411
+    padding: 60px 0 40px 0
+    .pick-name
+      margin-bottom: 20px
+      span
+        font-size: 24px
+  .search
+    background: #000000
+    padding: 20px 0
+    border-top: 1px solid #121416
+    border-bottom: 1px solid #222426
+  .all-cards
+    padding: 30px 0
+  .card
+    display: inline-block
+    width: 150px
+    margin: 0 20px 20px 0
+    position: relative
+    .hoverable
+      display: none
+      position: absolute
+      top: -50px
+      left: 180px
+      width: 300px
+      z-index: 10
+      img
+        width: 100%
+        border-radius: 15px
+        box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+    &:hover
+      .hoverable
+        display: block
+    img
+      width: 100%
+      cursor: pointer
+      border-radius: 15px
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+      &:hover
+        box-shadow: 0 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(255,255,255,0.2)
+  .search-query
+    position: relative
+    height: 44px
+    .clear
+      color: #aaa
+      position: absolute
+      right: 60px
+      line-height: 42px
+      top: 0
+      cursor: pointer
+      font-weight: bold
+    input
+      font-size: 16px
+      width: 100%
+      background: rgba(0,0,0,0.8)
+      padding: 10px 20px
+      color: #ffffff
+      border: 1px solid #333639
+      padding-right: 53px
+    .btn
+      position: absolute
+      right: 0
+      height: 42px
+      width: 48px
+      top: 1px
+      padding: 10px 15px
+      font-size: 20px
+      text-align: center
+      background: rgba(255,255,255,0.5)
 .DraftComponent
   padding: 100px 0 60px 0
   color: #f2f5f7
