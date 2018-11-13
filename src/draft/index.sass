@@ -5,9 +5,63 @@
   background: -webkit-linear-gradient(left, $color1 0%,$color1 33%,$color2 100%)
   background: linear-gradient(to right, $color1 0%,$color1 33%,$color2 100%)
 
-.HelperComponent
+.DraftComponent.HelperComponent
   padding: 50px 0 60px 0
   color: #f2f5f7
+  .deck .deck-card .card .card-inner .card-cost img
+    width: 18px
+  .helper
+    position: relative
+    .sidebar
+      position: relative
+      overflow: visible
+      .sidebar-inner
+        position: absolute
+        right: 0
+        top: 40px
+        width: 320px
+        background: #020508
+        border: 1px solid #131517
+        box-shadow: 0 3px 8px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2)
+        .deck.stats
+          min-height: 100px
+          padding: 0
+          .bar-section
+            width: 13px
+            display: inline-block
+            margin-right: 1px
+            .bar
+              height: 50px
+              background: #000000
+              position: relative
+              border: 1px solid #131619
+              .inner
+                position: absolute
+                left: 0
+                bottom: 0
+                width: 100%
+                background: #f6f6f6
+                &.spells
+                  background: #fdd017
+                &.lands
+                  background: #337ab7
+            .numbers
+              font-size: 10px
+              text-align: center
+          .row
+            padding: 5px 0
+            margin: 0
+            &:nth-child(even)
+              background: rgba(255,255,255,0.1)
+            .color
+              display: inline-block
+              span
+                margin: 0 3px
+                line-height: 15px
+              img
+                height: 15px
+                margin-right: 3px
+                vertical-align: middle
   .picks
     background: #020411
     padding: 60px 0 40px 0
@@ -15,6 +69,9 @@
       margin-bottom: 20px
       span
         font-size: 24px
+  .staggered
+    margin-right: 350px
+    width: auto
   .search
     background: #000000
     padding: 20px 0
